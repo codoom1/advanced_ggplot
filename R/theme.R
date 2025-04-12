@@ -1,4 +1,4 @@
-# Theme class is documented in Theme-doc.R
+# AGTheme class is documented in AGTheme-doc.R
 #' @export
 #' @keywords internal
 AGTheme <- R6::R6Class("AGTheme",
@@ -64,7 +64,7 @@ AGTheme <- R6::R6Class("AGTheme",
 
 #' Create a new theme
 #'
-#' Creates a new Theme object with the specified elements.
+#' Creates a new AGTheme object with the specified elements.
 #'
 #' @param ... Named theme elements
 #' @return A AGTheme object
