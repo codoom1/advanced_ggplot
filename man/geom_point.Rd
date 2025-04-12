@@ -8,7 +8,18 @@ geom_point(mapping = NULL, size = NULL)
 }
 \arguments{
 \item{mapping}{Aesthetic mappings}
+
+\item{size}{Point size (optional)}
+}
+\value{
+A GeomPoint object
 }
 \description{
 Create a point layer
+}
+\examples{
+\dontrun{
+plot <- AGPlot$new(data)
+plot$add_layer(geom_point(list(x = "x", y = "y")))
+}
 }

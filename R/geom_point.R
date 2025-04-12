@@ -30,6 +30,13 @@ GeomPoint <- R6::R6Class("GeomPoint",
 #' Create a point layer
 #' @export
 #' @param mapping Aesthetic mappings
+#' @param size Point size (optional)
+#' @return A GeomPoint object
+#' @examples
+#' \dontrun{
+#' plot <- AGPlot$new(data)
+#' plot$add_layer(geom_point(list(x = "x", y = "y")))
+#' }
 geom_point <- function(mapping = NULL, size = NULL) {
   if (!is.null(mapping) && !is.null(size) && is.null(mapping$size)) {
     mapping$size <- size

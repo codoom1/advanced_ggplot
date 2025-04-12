@@ -17,6 +17,8 @@ AGPlot <- R6::R6Class("AGPlot",
     initialize = function(data = NULL) {
       self$data <- data
       self$theme <- theme_minimal()  # Set default theme
+      # Make sure all imports are used
+      ensure_imports()
     },
     
     #' @description Add a new layer to the plot
