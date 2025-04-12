@@ -9,6 +9,7 @@ Description: A modern and flexible data visualization package for R, designed
     geometries including points, lines, bars, histograms, density plots, boxplots, 
     and more, along with advanced features like faceting, custom themes, 
     annotations, and animations.
+URL: https://christopherodoom.github.io/AdvancedGgplot
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
