@@ -12,7 +12,7 @@ Description: A modern and flexible data visualization package for R, designed
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Imports:
     R6,
     grid,
@@ -24,4 +24,4 @@ Suggests:
     knitr,
     rmarkdown
 Config/testthat/edition: 3
-VignetteBuilder: knitr 
+

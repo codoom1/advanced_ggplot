@@ -1,4 +1,4 @@
 library(testthat)
-library(Advanced_ggplot)
+library(AdvancedGgplot)
 
-test_check("Advanced_ggplot") 
+test_check("AdvancedGgplot") 
