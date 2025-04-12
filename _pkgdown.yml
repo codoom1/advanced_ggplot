@@ -39,6 +39,7 @@ reference:
   - title: Layout
     desc: Arrange plots and elements
     contents:
+      - PlotGrid
       - starts_with("facet_")
       - starts_with("annotation_")
       - starts_with("position_")
