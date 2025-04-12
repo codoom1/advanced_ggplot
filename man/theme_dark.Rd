@@ -7,7 +7,7 @@
 theme_dark()
 }
 \value{
-A Theme object with dark styling
+A AGTheme object with dark styling
 }
 \description{
 Create a dark theme with dark background

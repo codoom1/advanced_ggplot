@@ -7,7 +7,7 @@
 theme_minimal()
 }
 \value{
-A Theme object with minimal styling
+A AGTheme object with minimal styling
 }
 \description{
 Create a minimal theme with light background

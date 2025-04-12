@@ -10,7 +10,7 @@ theme(...)
 \item{...}{Named theme elements}
 }
 \value{
-A Theme object
+A AGTheme object
 }
 \description{
 Creates a new Theme object with the specified elements.
