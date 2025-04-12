@@ -1,15 +1,13 @@
-# Advanced_ggplot Statistical Visualizations
-# This script demonstrates statistical visualizations in the Advanced_ggplot package
-
 library(Advanced_ggplot)
+library(grDevices)
 
 # Set seed for reproducibility
 set.seed(123)
 
-#---------------------------------------------------------
-# Create sample data with multiple groups
-#---------------------------------------------------------
-# Generate random data for 4 different distributions
+# Create output directory
+dir.create("plot_outputs", showWarnings = FALSE)
+
+# Create sample data with different distributions
 categories <- rep(c("Normal", "Right-skewed", "Bimodal", "Left-skewed"), each = 100)
 
 # Normal distribution
@@ -31,22 +29,8 @@ stat_data <- data.frame(
   value = values
 )
 
-#---------------------------------------------------------
-# 1. Basic Boxplot
-#---------------------------------------------------------
-boxplot <- AGPlot$new(stat_data)
-boxplot$add_layer(geom_boxplot(mapping = list(
-  x = "distribution", 
-  y = "value",
-  fill = "lightblue",
-  color = "navy"
-)))
-# Display the plot
-boxplot$plot()
-
-#---------------------------------------------------------
-# 2. Basic Violin Plot
-#---------------------------------------------------------
+# 1. Basic Violin Plot
+png("plot_outputs/violin_plot.png", width = 800, height = 600)
 violin_plot <- AGPlot$new(stat_data)
 violin_plot$add_layer(geom_violin(mapping = list(
   x = "distribution", 
@@ -55,13 +39,11 @@ violin_plot$add_layer(geom_violin(mapping = list(
   color = "darkgreen",
   alpha = 0.7
 )))
-# Display the plot
 violin_plot$plot()
+dev.off()
 
-#---------------------------------------------------------
-# 3. Combined Boxplot and Violin Plot
-#---------------------------------------------------------
-# This shows both the distribution shape and the summary statistics
+# 2. Combined Boxplot and Violin Plot
+png("plot_outputs/combined_boxplot_violin.png", width = 800, height = 600)
 combined_plot <- AGPlot$new(stat_data)
 combined_plot$add_layer(geom_violin(mapping = list(
   x = "distribution", 
@@ -77,19 +59,18 @@ combined_plot$add_layer(geom_boxplot(mapping = list(
   alpha = 0.7,
   width = 0.3
 )))
-# Display the plot
 combined_plot$plot()
+dev.off()
 
-#---------------------------------------------------------
-# 4. Violin Plot with Different Scaling Options
-#---------------------------------------------------------
+# 3. Violin Plot Scaling Comparison
 # Create data with different group sizes
 uneven_groups <- data.frame(
   group = c(rep("Small", 20), rep("Medium", 50), rep("Large", 100)),
   value = c(rnorm(20), rnorm(50), rnorm(100))
 )
 
-# Area scaling (each violin has the same area)
+# Area scaling (default)
+png("plot_outputs/area_scaling.png", width = 800, height = 600)
 area_scaling <- AGPlot$new(uneven_groups)
 area_scaling$add_layer(geom_violin(mapping = list(
   x = "group", 
@@ -97,10 +78,11 @@ area_scaling$add_layer(geom_violin(mapping = list(
   fill = "salmon",
   scale = "area"
 )))
-# Display the plot
 area_scaling$plot()
+dev.off()
 
-# Count scaling (violin width proportional to group size)
+# Count scaling
+png("plot_outputs/count_scaling.png", width = 800, height = 600)
 count_scaling <- AGPlot$new(uneven_groups)
 count_scaling$add_layer(geom_violin(mapping = list(
   x = "group", 
@@ -108,12 +90,10 @@ count_scaling$add_layer(geom_violin(mapping = list(
   fill = "lightblue",
   scale = "count"
 )))
-# Display the plot
 count_scaling$plot()
+dev.off()
 
-#---------------------------------------------------------
-# 5. Comparing Multiple Variables with Violin Plots
-#---------------------------------------------------------
+# 4. Faceted Violin Plots
 # Create multi-variable data
 multi_var <- data.frame(
   x = rep(c("A", "B", "C"), each = 100),
@@ -130,12 +110,15 @@ long_data <- reshape2::melt(
 )
 
 # Create faceted violin plots
+png("plot_outputs/faceted_violins.png", width = 800, height = 600)
 facet_violins <- AGPlot$new(long_data)
 facet_violins$add_layer(geom_violin(mapping = list(
   x = "x", 
   y = "value",
-  fill = "x"
+  fill = "skyblue"
 )))
 facet_violins$set_facet(facet_wrap(formula = ~ variable, ncol = 2))
-# Display the plot
-facet_violins$plot() 
+facet_violins$plot()
+dev.off()
+
+cat("Plot images have been saved to the 'plot_outputs' directory.\n") 

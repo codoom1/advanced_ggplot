@@ -15,7 +15,7 @@ data <- data.frame(
 #---------------------------------------------------------
 # 1. Basic scatter plot
 #---------------------------------------------------------
-scatter_plot <- Plot$new(data)
+scatter_plot <- AGPlot$new(data)
 scatter_plot$add_layer(geom_point(mapping = list(
   x = "x", 
   y = "y", 
@@ -27,7 +27,7 @@ scatter_plot$plot()
 #---------------------------------------------------------
 # 2. Line plot with different colors by group
 #---------------------------------------------------------
-line_plot <- Plot$new(data)
+line_plot <- AGPlot$new(data)
 line_plot$add_layer(geom_line(mapping = list(
   x = "x", 
   y = "y", 
@@ -39,7 +39,7 @@ line_plot$plot()
 #---------------------------------------------------------
 # 3. Combined geometries (points and lines)
 #---------------------------------------------------------
-combined_plot <- Plot$new(data)
+combined_plot <- AGPlot$new(data)
 combined_plot$add_layer(geom_line(mapping = list(
   x = "x", 
   y = "y", 
@@ -56,7 +56,7 @@ combined_plot$plot()
 #---------------------------------------------------------
 # 4. Smoothed line with confidence interval
 #---------------------------------------------------------
-smooth_plot <- Plot$new(data)
+smooth_plot <- AGPlot$new(data)
 smooth_plot$add_layer(geom_point(mapping = list(
   x = "x", 
   y = "y", 
@@ -73,7 +73,7 @@ smooth_plot$plot()
 #---------------------------------------------------------
 # 5. Histograms
 #---------------------------------------------------------
-hist_plot <- Plot$new(data)
+hist_plot <- AGPlot$new(data)
 hist_plot$add_layer(geom_histogram(mapping = list(
   x = "y", 
   fill = "lightblue", 
@@ -95,7 +95,7 @@ boxplot_data <- data.frame(
   )
 )
 
-boxplot <- Plot$new(boxplot_data)
+boxplot <- AGPlot$new(boxplot_data)
 boxplot$add_layer(geom_boxplot(mapping = list(
   x = "category", 
   y = "value",
@@ -116,7 +116,7 @@ long_data <- reshape2::melt(
   value.name = "value"
 )
 
-facet_plot <- Plot$new(long_data)
+facet_plot <- AGPlot$new(long_data)
 facet_plot$add_layer(geom_line(mapping = list(
   x = "x", 
   y = "value", 
@@ -134,7 +134,7 @@ facet_plot$plot()
 #---------------------------------------------------------
 # 8. Density plot
 #---------------------------------------------------------
-density_plot <- Plot$new(data)
+density_plot <- AGPlot$new(data)
 density_plot$add_layer(geom_density(mapping = list(
   x = "y", 
   fill = "lightblue", 
@@ -151,7 +151,7 @@ counts <- data.frame(
   value = c(25, 40, 15, 35)
 )
 
-bar_plot <- Plot$new(counts)
+bar_plot <- AGPlot$new(counts)
 bar_plot$add_layer(geom_bar(mapping = list(
   x = "category", 
   y = "value",
@@ -163,7 +163,7 @@ bar_plot$plot()
 #---------------------------------------------------------
 # 10. Area plot
 #---------------------------------------------------------
-area_plot <- Plot$new(data)
+area_plot <- AGPlot$new(data)
 area_plot$add_layer(geom_area(mapping = list(
   x = "x", 
   y = "y",

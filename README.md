@@ -43,7 +43,7 @@ data <- data.frame(
 )
 
 # Create a simple scatter plot
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "blue")))
 plot$plot()
 ```
@@ -52,7 +52,7 @@ plot$plot()
 
 ```R
 # Combine multiple geometries
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "blue")))
 plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
 plot$add_layer(geom_point(mapping = list(x = "x", y = "z", color = "red")))
@@ -64,7 +64,7 @@ plot$plot()
 
 ```R
 # Create a more advanced plot with custom theme and annotations
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
 plot$add_layer(geom_smooth(mapping = list(x = "x", y = "y")))
 plot$set_theme(theme_dark())
@@ -86,7 +86,7 @@ values <- c(
 box_data <- data.frame(category = categories, value = values)
 
 # Create a boxplot
-plot <- Plot$new(box_data)
+plot <- AGPlot$new(box_data)
 plot$add_layer(geom_boxplot(mapping = list(
   x = "category", 
   y = "value",
@@ -100,7 +100,7 @@ plot$plot()
 
 ```R
 # Using the same data as the boxplot example
-plot <- Plot$new(box_data)
+plot <- AGPlot$new(box_data)
 plot$add_layer(geom_violin(mapping = list(
   x = "category", 
   y = "value",
@@ -111,7 +111,7 @@ plot$add_layer(geom_violin(mapping = list(
 plot$plot()
 
 # Combining boxplots and violin plots
-plot <- Plot$new(box_data)
+plot <- AGPlot$new(box_data)
 plot$add_layer(geom_violin(mapping = list(
   x = "category", 
   y = "value",
@@ -131,7 +131,7 @@ plot$plot()
 ```R
 # Create a faceted plot
 long_data <- reshape2::melt(data, id.vars = "x", variable.name = "series", value.name = "value")
-plot <- Plot$new(long_data)
+plot <- AGPlot$new(long_data)
 plot$add_layer(geom_line(mapping = list(x = "x", y = "value", color = "series")))
 plot$set_facet(facet_wrap(formula = ~ series, ncol = 2))
 plot$plot()

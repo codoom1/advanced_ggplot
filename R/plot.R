@@ -1,7 +1,7 @@
-#' @title Plot Class
+#' @title AGPlot Class
 #' @description The main plot class that handles all visualizations
 #' @export
-Plot <- R6::R6Class("Plot",
+AGPlot <- R6::R6Class("AGPlot",
   public = list(
     data = NULL,
     layers = list(),
@@ -171,3 +171,8 @@ Plot <- R6::R6Class("Plot",
     }
   )
 )
+
+#' @title Plot Class (Legacy)
+#' @description The main plot class that handles all visualizations (deprecated, use AGPlot instead)
+#' @export
+Plot <- R6::R6Class("Plot", inherit = AGPlot)

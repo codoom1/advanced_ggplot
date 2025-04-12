@@ -1,0 +1,61 @@
+url: https://christopherodoom.github.io/Advanced_ggplot/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+navbar:
+  structure:
+    left:  [home, reference, articles, tutorials, news]
+    right: [github]
+
+reference:
+  - title: Core Plot Classes
+    desc: Core classes for creating and managing plots
+    contents:
+      - AGPlot
+      - Plot
+  
+  - title: Geometries
+    desc: Visualization methods for rendering data
+    contents:
+      - starts_with("geom_")
+      - starts_with("Geom")
+  
+  - title: Statistics
+    desc: Statistical transformations for data visualization
+    contents:
+      - starts_with("Stat")
+  
+  - title: Themes and Aesthetics
+    desc: Control the appearance of plots
+    contents:
+      - starts_with("theme_")
+      - starts_with("scale_")
+      - starts_with("coord_")
+      - starts_with("legend_")
+  
+  - title: Layout
+    desc: Arrange plots and elements
+    contents:
+      - starts_with("facet_")
+      - starts_with("annotation_")
+      - starts_with("position_")
+  
+  - title: Advanced Features
+    desc: Advanced visualization capabilities
+    contents:
+      - starts_with("interactive_")
+      - starts_with("animation_")
+
+articles:
+  - title: Getting Started
+    desc: Learn the basics of Advanced_ggplot
+    contents:
+      - introduction
+  
+  - title: Examples
+    desc: Example visualizations
+    contents:
+      - basic-examples
+      - statistical-visualizations 

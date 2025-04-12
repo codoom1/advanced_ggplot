@@ -1,0 +1,43 @@
+# R related files
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Renviron
+.Rprofile
+*.Rproj
+
+# Package build files
+*.tar.gz
+*.tgz
+*.rda
+*.rds
+
+# Documentation generated files
+inst/doc
+Meta/
+doc/
+/doc/
+/Meta/
+
+# macOS files
+.DS_Store
+*.swp
+*.swo
+
+# Build and check folders
+/revdep/
+/build/
+/check/
+
+# Temporary files from tests
+tests/testthat/Rplots.pdf
+
+# Miscellaneous
+*.log
+.httr-oauth
+.RProfile
+data/*.rda
+*.history
+*.rdb
+*.rdx 

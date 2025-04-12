@@ -27,7 +27,7 @@ Advanced_ggplot is a modern data visualization package for R, designed as an alt
 
 Advanced_ggplot is built around a few key concepts:
 
-1. **Plot**: The main container for visualizations
+1. **AGPlot**: The main container for visualizations
 2. **Layers**: Visual elements that represent data (points, lines, etc.)
 3. **Aesthetics**: Mappings between data variables and visual properties
 4. **Scales**: Control how data values are mapped to visual properties
@@ -61,7 +61,7 @@ data <- data.frame(
 )
 
 # Create a simple scatter plot
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "blue")))
 plot$plot()
 ```
@@ -72,7 +72,7 @@ One of the strengths of Advanced_ggplot is the ability to combine multiple layer
 
 ```{r}
 # Combine points and lines
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
 plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "red")))
 plot$plot()
@@ -84,7 +84,7 @@ Advanced_ggplot includes statistical transformations like smoothing:
 
 ```{r}
 # Add a smoothed line with confidence interval
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "black")))
 plot$add_layer(geom_smooth(mapping = list(x = "x", y = "y", color = "blue")))
 plot$plot()
@@ -108,7 +108,7 @@ stat_data <- data.frame(
 )
 
 # Create a boxplot
-boxplot <- Plot$new(stat_data)
+boxplot <- AGPlot$new(stat_data)
 boxplot$add_layer(geom_boxplot(mapping = list(
   x = "category", 
   y = "value",
@@ -124,7 +124,7 @@ Violin plots show the distribution shape and are useful for comparing distributi
 
 ```{r}
 # Create a violin plot with the same data
-violin_plot <- Plot$new(stat_data)
+violin_plot <- AGPlot$new(stat_data)
 violin_plot$add_layer(geom_violin(mapping = list(
   x = "category", 
   y = "value",
@@ -141,7 +141,7 @@ You can combine boxplots and violin plots for a more comprehensive view:
 
 ```{r}
 # Create a plot with both boxplots and violin plots
-combined_stat <- Plot$new(stat_data)
+combined_stat <- AGPlot$new(stat_data)
 combined_stat$add_layer(geom_violin(mapping = list(
   x = "category", 
   y = "value",
@@ -173,7 +173,7 @@ long_data <- reshape2::melt(
 )
 
 # Create a faceted plot
-plot <- Plot$new(long_data)
+plot <- AGPlot$new(long_data)
 plot$add_layer(geom_line(mapping = list(
   x = "x", 
   y = "value", 
@@ -191,7 +191,7 @@ Advanced_ggplot includes a variety of geometry types:
 
 ```{r}
 # Create a histogram
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_histogram(mapping = list(
   x = "y", 
   fill = "lightblue", 
@@ -204,7 +204,7 @@ plot$plot()
 
 ```{r}
 # Create a density plot
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_density(mapping = list(
   x = "y", 
   fill = "lightblue", 
@@ -224,7 +224,7 @@ counts <- data.frame(
 )
 
 # Create a bar chart
-plot <- Plot$new(counts)
+plot <- AGPlot$new(counts)
 plot$add_layer(geom_bar(mapping = list(
   x = "category", 
   y = "value",
@@ -239,7 +239,7 @@ Customize your plots with themes:
 
 ```{r eval=FALSE}
 # Apply a dark theme
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "white")))
 plot$set_theme(theme_dark())
 plot$plot()
@@ -251,7 +251,7 @@ Add context to your plots with annotations:
 
 ```{r eval=FALSE}
 # Add text annotation
-plot <- Plot$new(data)
+plot <- AGPlot$new(data)
 plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
 plot$add_annotation(annotation_text(x = 10, y = 0.8, label = "Peak"))
 plot$plot()
