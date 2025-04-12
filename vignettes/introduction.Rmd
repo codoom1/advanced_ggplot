@@ -48,7 +48,7 @@ devtools::install_github("christopherodoom/AdvancedGgplot")
 
 Let's start by creating a simple scatter plot:
 
-```{r setup, message=FALSE, eval=FALSE}
+```{r example1, message=FALSE, eval=FALSE}
 library(AdvancedGgplot)
 
 # Create sample data
@@ -62,7 +62,7 @@ data <- data.frame(
 
 # Create a simple scatter plot
 plot <- AGPlot$new(data)
-plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "blue")))
+plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = '"blue"')))
 plot$plot()
 ```
 
@@ -73,8 +73,8 @@ One of the strengths of AdvancedGgplot is the ability to combine multiple layers
 ```{r eval=FALSE}
 # Combine points and lines
 plot <- AGPlot$new(data)
-plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
-plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "red")))
+plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = '"blue"')))
+plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = '"red"')))
 plot$plot()
 ```
 
@@ -85,8 +85,8 @@ AdvancedGgplot includes statistical transformations like smoothing:
 ```{r eval=FALSE}
 # Add a smoothed line with confidence interval
 plot <- AGPlot$new(data)
-plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "black")))
-plot$add_layer(geom_smooth(mapping = list(x = "x", y = "y", color = "blue")))
+plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = '"black"')))
+plot$add_layer(geom_smooth(mapping = list(x = "x", y = "y", color = '"blue"')))
 plot$plot()
 ```
 
@@ -112,8 +112,8 @@ boxplot <- AGPlot$new(stat_data)
 boxplot$add_layer(geom_boxplot(mapping = list(
   x = "category", 
   y = "value",
-  fill = "lightblue",
-  color = "navy"
+  fill = '"lightblue"',
+  color = '"navy"'
 )))
 boxplot$plot()
 ```
@@ -128,8 +128,8 @@ violin_plot <- AGPlot$new(stat_data)
 violin_plot$add_layer(geom_violin(mapping = list(
   x = "category", 
   y = "value",
-  fill = "lightgreen",
-  color = "darkgreen",
+  fill = '"lightgreen"',
+  color = '"darkgreen"',
   alpha = 0.7
 )))
 violin_plot$plot()
@@ -145,14 +145,14 @@ combined_stat <- AGPlot$new(stat_data)
 combined_stat$add_layer(geom_violin(mapping = list(
   x = "category", 
   y = "value",
-  fill = "lightgreen",
+  fill = '"lightgreen"',
   alpha = 0.5,
   width = 0.9
 )))
 combined_stat$add_layer(geom_boxplot(mapping = list(
   x = "category", 
   y = "value",
-  fill = "white",
+  fill = '"white"',
   alpha = 0.7,
   width = 0.3
 )))
@@ -177,7 +177,7 @@ plot <- AGPlot$new(long_data)
 plot$add_layer(geom_line(mapping = list(
   x = "x", 
   y = "value", 
-  color = "blue"
+  color = '"blue"'
 )))
 plot$set_facet(facet_wrap(formula = ~ series, ncol = 2))
 plot$plot()
@@ -194,8 +194,8 @@ AdvancedGgplot includes a variety of geometry types:
 plot <- AGPlot$new(data)
 plot$add_layer(geom_histogram(mapping = list(
   x = "y", 
-  fill = "lightblue", 
-  color = "black"
+  fill = '"lightblue"', 
+  color = '"black"'
 )))
 plot$plot()
 ```
@@ -207,8 +207,8 @@ plot$plot()
 plot <- AGPlot$new(data)
 plot$add_layer(geom_density(mapping = list(
   x = "y", 
-  fill = "lightblue", 
-  color = "blue",
+  fill = '"lightblue"', 
+  color = '"blue"',
   alpha = 0.5
 )))
 plot$plot()
@@ -228,7 +228,7 @@ plot <- AGPlot$new(counts)
 plot$add_layer(geom_bar(mapping = list(
   x = "category", 
   y = "value",
-  fill = "steelblue"
+  fill = '"steelblue"'
 )))
 plot$plot()
 ```
@@ -240,7 +240,7 @@ Customize your plots with themes:
 ```{r eval=FALSE}
 # Apply a dark theme
 plot <- AGPlot$new(data)
-plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "white")))
+plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = '"white"')))
 plot$set_theme(theme_dark())
 plot$plot()
 ```
@@ -252,8 +252,8 @@ Add context to your plots with annotations:
 ```{r eval=FALSE}
 # Add text annotation
 plot <- AGPlot$new(data)
-plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
-plot$add_annotation(annotation_text(x = 10, y = 0.8, label = "Peak"))
+plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = '"blue"')))
+plot$add_annotation(annotation_text(x = 10, y = 0.8, label = '"Peak"'))
 plot$plot()
 ```
 
