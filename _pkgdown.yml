@@ -1,4 +1,4 @@
-url: https://christopherodoom.github.io/Advanced_ggplot/
+url: https://christopherodoom.github.io/AdvancedGgplot/
 
 template:
   bootstrap: 5
@@ -50,7 +50,7 @@ reference:
 
 articles:
   - title: Getting Started
-    desc: Learn the basics of Advanced_ggplot
+    desc: Learn the basics of AdvancedGgplot
     contents:
       - introduction
   

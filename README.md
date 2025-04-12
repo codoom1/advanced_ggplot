@@ -1,4 +1,4 @@
-# Advanced_ggplot
+# AdvancedGgplot
 
 A modern and flexible data visualization package for R, designed to provide an alternative to ggplot2 with a clean, composable API and object-oriented design.
 
@@ -25,7 +25,7 @@ A modern and flexible data visualization package for R, designed to provide an a
 ```R
 # Install from GitHub
 # install.packages("devtools")
-devtools::install_github("christopherodoom/Advanced_ggplot")
+devtools::install_github("christopherodoom/AdvancedGgplot")
 ```
 
 ## Usage Examples
@@ -33,7 +33,7 @@ devtools::install_github("christopherodoom/Advanced_ggplot")
 ### Basic Plot
 
 ```R
-library(Advanced_ggplot)
+library(AdvancedGgplot)
 
 # Create sample data
 data <- data.frame(
