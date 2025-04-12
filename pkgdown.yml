@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   introduction: introduction.html
-last_built: 2025-04-12T04:55Z
+last_built: 2025-04-12T04:58Z
 urls:
   reference: https://christopherodoom.github.io/AdvancedGgplot/reference
   article: https://christopherodoom.github.io/AdvancedGgplot/articles
