@@ -15,4 +15,4 @@
 ^example_plots\.pdf$
 ^generate_example_plots\.R$
 ^plot_examples\.R$
-^plot_visualizations\.md$ 
+^plot_visualizations\.md$
