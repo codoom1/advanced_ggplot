@@ -1,4 +1,5 @@
 #' @title Theme Class
+#' @name Theme
 #' @description Controls the visual appearance of plot elements
 #' @export
 #' @format An R6 class object.
