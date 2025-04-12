@@ -13,5 +13,13 @@ theme(...)
 A Theme object
 }
 \description{
-Create a new theme
+Creates a new Theme object with the specified elements.
+}
+\examples{
+\dontrun{
+my_theme <- theme(
+  plot.background = list(fill = "lightyellow"),
+  axis.line = list(color = "darkgrey")
+)
+}
 }

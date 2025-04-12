@@ -7,4 +7,12 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 ^cran-comments\.md$
-^docs$ 
+^docs$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+^RELEASE_SUMMARY\.md$
+^advanced_ggplot_examples\.R$
+^example_plots\.pdf$
+^generate_example_plots\.R$
+^plot_examples\.R$
+^plot_visualizations\.md$ 
