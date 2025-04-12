@@ -1,0 +1,262 @@
+---
+title: "Introduction to Advanced_ggplot"
+author: "Christopher Odoom"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to Advanced_ggplot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = "center"
+)
+```
+
+## Overview
+
+Advanced_ggplot is a modern data visualization package for R, designed as an alternative to ggplot2 with a fully object-oriented approach using R6 classes. The package provides a flexible, composable API for creating complex visualizations.
+
+## Core Concepts
+
+Advanced_ggplot is built around a few key concepts:
+
+1. **Plot**: The main container for visualizations
+2. **Layers**: Visual elements that represent data (points, lines, etc.)
+3. **Aesthetics**: Mappings between data variables and visual properties
+4. **Scales**: Control how data values are mapped to visual properties
+5. **Facets**: Create multiple panels based on categorical variables
+6. **Themes**: Control non-data visual elements like backgrounds and fonts
+7. **Annotations**: Add context with text, arrows, etc.
+
+## Installation
+
+You can install the development version of Advanced_ggplot from GitHub:
+
+```{r eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("christopherodoom/Advanced_ggplot")
+```
+
+## Basic Usage
+
+Let's start by creating a simple scatter plot:
+
+```{r setup, message=FALSE}
+library(Advanced_ggplot)
+
+# Create sample data
+set.seed(123)
+data <- data.frame(
+  x = 1:20,
+  y = sin(1:20 / 2) + rnorm(20, sd = 0.1),
+  z = cos(1:20 / 2) + rnorm(20, sd = 0.1),
+  group = rep(c("A", "B"), each = 10)
+)
+
+# Create a simple scatter plot
+plot <- Plot$new(data)
+plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "blue")))
+plot$plot()
+```
+
+## Combining Multiple Layers
+
+One of the strengths of Advanced_ggplot is the ability to combine multiple layers for complex visualizations:
+
+```{r}
+# Combine points and lines
+plot <- Plot$new(data)
+plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
+plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "red")))
+plot$plot()
+```
+
+## Statistical Transformations
+
+Advanced_ggplot includes statistical transformations like smoothing:
+
+```{r}
+# Add a smoothed line with confidence interval
+plot <- Plot$new(data)
+plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "black")))
+plot$add_layer(geom_smooth(mapping = list(x = "x", y = "y", color = "blue")))
+plot$plot()
+```
+
+## Statistical Visualization
+
+### Boxplots
+
+Boxplots provide a concise summary of a distribution:
+
+```{r}
+# Create data for statistical plots
+stat_data <- data.frame(
+  category = rep(c("Group A", "Group B", "Group C"), each = 30),
+  value = c(
+    rnorm(30, mean = 5, sd = 1),
+    rnorm(30, mean = 7, sd = 1.5),
+    rnorm(30, mean = 4, sd = 0.8)
+  )
+)
+
+# Create a boxplot
+boxplot <- Plot$new(stat_data)
+boxplot$add_layer(geom_boxplot(mapping = list(
+  x = "category", 
+  y = "value",
+  fill = "lightblue",
+  color = "navy"
+)))
+boxplot$plot()
+```
+
+### Violin Plots
+
+Violin plots show the distribution shape and are useful for comparing distributions between groups:
+
+```{r}
+# Create a violin plot with the same data
+violin_plot <- Plot$new(stat_data)
+violin_plot$add_layer(geom_violin(mapping = list(
+  x = "category", 
+  y = "value",
+  fill = "lightgreen",
+  color = "darkgreen",
+  alpha = 0.7
+)))
+violin_plot$plot()
+```
+
+### Combined Statistical Visualization
+
+You can combine boxplots and violin plots for a more comprehensive view:
+
+```{r}
+# Create a plot with both boxplots and violin plots
+combined_stat <- Plot$new(stat_data)
+combined_stat$add_layer(geom_violin(mapping = list(
+  x = "category", 
+  y = "value",
+  fill = "lightgreen",
+  alpha = 0.5,
+  width = 0.9
+)))
+combined_stat$add_layer(geom_boxplot(mapping = list(
+  x = "category", 
+  y = "value",
+  fill = "white",
+  alpha = 0.7,
+  width = 0.3
+)))
+combined_stat$plot()
+```
+
+## Faceting
+
+Create multi-panel plots with faceting:
+
+```{r}
+# Prepare data in long format for faceting
+long_data <- reshape2::melt(
+  data[, c("x", "y", "z")], 
+  id.vars = "x", 
+  variable.name = "series", 
+  value.name = "value"
+)
+
+# Create a faceted plot
+plot <- Plot$new(long_data)
+plot$add_layer(geom_line(mapping = list(
+  x = "x", 
+  y = "value", 
+  color = "blue"
+)))
+plot$set_facet(facet_wrap(formula = ~ series, ncol = 2))
+plot$plot()
+```
+
+## Additional Geometry Types
+
+Advanced_ggplot includes a variety of geometry types:
+
+### Histograms
+
+```{r}
+# Create a histogram
+plot <- Plot$new(data)
+plot$add_layer(geom_histogram(mapping = list(
+  x = "y", 
+  fill = "lightblue", 
+  color = "black"
+)))
+plot$plot()
+```
+
+### Density Plots
+
+```{r}
+# Create a density plot
+plot <- Plot$new(data)
+plot$add_layer(geom_density(mapping = list(
+  x = "y", 
+  fill = "lightblue", 
+  color = "blue",
+  alpha = 0.5
+)))
+plot$plot()
+```
+
+### Bar Charts
+
+```{r}
+# Create data for bar chart
+counts <- data.frame(
+  category = c("A", "B", "C", "D"),
+  value = c(25, 40, 15, 35)
+)
+
+# Create a bar chart
+plot <- Plot$new(counts)
+plot$add_layer(geom_bar(mapping = list(
+  x = "category", 
+  y = "value",
+  fill = "steelblue"
+)))
+plot$plot()
+```
+
+## Customization with Themes
+
+Customize your plots with themes:
+
+```{r eval=FALSE}
+# Apply a dark theme
+plot <- Plot$new(data)
+plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "white")))
+plot$set_theme(theme_dark())
+plot$plot()
+```
+
+## Annotations
+
+Add context to your plots with annotations:
+
+```{r eval=FALSE}
+# Add text annotation
+plot <- Plot$new(data)
+plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
+plot$add_annotation(annotation_text(x = 10, y = 0.8, label = "Peak"))
+plot$plot()
+```
+
+## Conclusion
+
+Advanced_ggplot provides a flexible, object-oriented approach to data visualization in R. Its composable API makes it easy to create complex visualizations while maintaining readability and maintainability. 

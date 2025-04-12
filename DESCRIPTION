@@ -1,0 +1,27 @@
+Package: Advanced_ggplot
+Title: A Modern Object-Oriented Data Visualization Package
+Version: 0.1.0
+Authors@R: 
+    person("Christopher", "Odoom", email = "odoomchristopher22@gmail.com", role = c("aut", "cre"))
+Description: A modern and flexible data visualization package for R, designed 
+    to provide an alternative to ggplot2 with a clean, composable API and fully 
+    object-oriented design using R6 classes. The package supports a variety of 
+    geometries including points, lines, bars, histograms, density plots, boxplots, 
+    and more, along with advanced features like faceting, custom themes, 
+    annotations, and animations.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports:
+    R6,
+    grid,
+    stats,
+    graphics,
+    reshape2
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+Config/testthat/edition: 3
+VignetteBuilder: knitr 
