@@ -1,8 +1,8 @@
-#' Theme Class
+#' AGTheme Class
 #'
-#' @title Theme Class
-#' @name Theme
-#' @aliases Theme
+#' @title AGTheme Class
+#' @name AGTheme
+#' @aliases AGTheme
 #' @docType class
 #' @format \code{\link{R6Class}} object.
 #' @description R6 Class for controlling the visual appearance of plot elements.
@@ -21,14 +21,14 @@
 #' }
 #' @section Methods:
 #' \describe{
-#'   \item{\code{initialize(...)}}{Create a new Theme with the specified elements}
+#'   \item{\code{initialize(...)}}{Create a new AGTheme with the specified elements}
 #'   \item{\code{apply()}}{Apply theme elements to the current viewport}
 #' }
 #' @export
 #' @examples
 #' \dontrun{
 #' # Create a custom theme
-#' custom_theme <- Theme$new(
+#' custom_theme <- AGTheme$new(
 #'   plot.background = list(fill = "white"),
 #'   panel.grid.major = list(color = "grey80")
 #' )

@@ -39,7 +39,7 @@ test_that("Themes can be applied to plots", {
   dark_theme <- theme_dark()
   
   expect_s3_class(dark_theme, "R6")
-  expect_true(inherits(dark_theme, "Theme"))
+  expect_true(inherits(dark_theme, "AGTheme"))
   
   p$set_theme(dark_theme)
   expect_identical(p$theme, dark_theme)

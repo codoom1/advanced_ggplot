@@ -1,8 +1,7 @@
 # Theme class is documented in Theme-doc.R
 #' @export
 #' @keywords internal
-#' @noRd
-Theme <- R6::R6Class("Theme",
+AGTheme <- R6::R6Class("AGTheme",
   public = list(
     # Plot region
     plot.background = NULL,
@@ -68,7 +67,7 @@ Theme <- R6::R6Class("Theme",
 #' Creates a new Theme object with the specified elements.
 #'
 #' @param ... Named theme elements
-#' @return A Theme object
+#' @return A AGTheme object
 #' @export
 #' @examples
 #' \dontrun{
@@ -78,12 +77,12 @@ Theme <- R6::R6Class("Theme",
 #' )
 #' }
 theme <- function(...) {
-  Theme$new(...)
+  AGTheme$new(...)
 }
 
 #' Create a minimal theme with light background
 #' @export
-#' @return A Theme object with minimal styling
+#' @return A AGTheme object with minimal styling
 #' @examples
 #' \dontrun{
 #' plot <- AGPlot$new(data)
@@ -103,7 +102,7 @@ theme_minimal <- function() {
 
 #' Create a dark theme with dark background
 #' @export
-#' @return A Theme object with dark styling
+#' @return A AGTheme object with dark styling
 #' @examples
 #' \dontrun{
 #' plot <- AGPlot$new(data)
