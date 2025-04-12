@@ -71,25 +71,33 @@ ColorScale <- R6::R6Class("ColorScale",
 )
 
 # Predefined color palettes
+#' Default color palette with standard colors
 #' @export 
+#' @return A ColorPalette object with default colors
 palette_default <- function() {
   ColorPalette$new(c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
                      "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"))
 }
 
+#' Colorblind-friendly color palette
 #' @export
+#' @return A ColorPalette object with colorblind-friendly colors
 palette_colorblind <- function() {
   ColorPalette$new(c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", 
                      "#0072B2", "#D55E00", "#CC79A7"))
 }
 
+#' Diverging color palette for highlighting differences above/below a middle point
 #' @export
+#' @return A ColorPalette object with diverging colors
 palette_diverging <- function() {
   ColorPalette$new(c("#d73027", "#f46d43", "#fdae61", "#fee090", "#ffffbf",
                      "#e0f3f8", "#abd9e9", "#74add1", "#4575b4"))
 }
 
+#' Sequential color palette for ordered data
 #' @export
+#' @return A ColorPalette object with sequential colors
 palette_sequential <- function() {
   ColorPalette$new(c("#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6",
                      "#4292c6", "#2171b5", "#08519c", "#08306b"))

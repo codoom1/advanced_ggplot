@@ -113,6 +113,8 @@ GeomBoxplot <- R6::R6Class("GeomBoxplot",
   )
 )
 
+#' @title Boxplot Statistics
+#' @description Statistical transformation for boxplot calculations
 #' @export
 StatBoxplot <- R6::R6Class("StatBoxplot",
   inherit = Stat,
@@ -129,10 +131,16 @@ StatBoxplot <- R6::R6Class("StatBoxplot",
         x_val <- unique(group_data$x)
         y_vals <- group_data$y
         
-        # Calculate boxplot statistics
-        bp_stats <- stats::boxplot.stats(y_vals)
+        # Calculate boxplot statistics using the imported function
+        bp_stats <- .boxplot.stats(y_vals)
         
         # Create a data frame with boxplot statistics
+        # Always provide an outliers list, even if empty
+        outliers_list <- list(bp_stats$out)
+        if (length(outliers_list[[1]]) == 0) {
+          outliers_list <- list(numeric(0))
+        }
+        
         group_result <- data.frame(
           x = x_val,
           group = g,
@@ -141,8 +149,9 @@ StatBoxplot <- R6::R6Class("StatBoxplot",
           middle = bp_stats$stats[3], # median
           upper = bp_stats$stats[4], # upper hinge (75%)
           ymax = bp_stats$stats[5],  # upper whisker
-          outliers = list(bp_stats$out) # outliers
+          stringsAsFactors = FALSE
         )
+        group_result$outliers <- outliers_list
         
         result <- rbind(result, group_result)
       }
@@ -165,7 +174,4 @@ geom_boxplot <- function(mapping = NULL, width = 0.75) {
     mapping = mapping,
     stat = StatBoxplot$new()
   )
-}
-
-# Helper function for NULL coalescing
-`%||%` <- function(a, b) if (is.null(a)) b else a 
+} 

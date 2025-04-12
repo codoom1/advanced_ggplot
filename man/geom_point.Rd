@@ -4,7 +4,7 @@
 \alias{geom_point}
 \title{Create a point layer}
 \usage{
-geom_point(mapping = NULL)
+geom_point(mapping = NULL, size = NULL)
 }
 \arguments{
 \item{mapping}{Aesthetic mappings}

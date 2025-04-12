@@ -31,7 +31,17 @@ GeomDensity <- R6::R6Class("GeomDensity",
   )
 )
 
+#' Create a density plot layer
 #' @export
+#' @param mapping Aesthetic mappings
+#' @param kernel Kernel function to use for density estimation
+#' @param bw Bandwidth method or value
+#' @return A GeomDensity object
+#' @examples
+#' \dontrun{
+#' plot <- AGPlot$new(data)
+#' plot$add_layer(geom_density(list(x = "variable")))
+#' }
 geom_density <- function(mapping, kernel = "gaussian", bw = "nrd0") {
   GeomDensity$new(mapping = mapping, kernel = kernel, bw = bw)
 }

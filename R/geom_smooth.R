@@ -43,7 +43,17 @@ GeomSmooth <- R6::R6Class("GeomSmooth",
   )
 )
 
+#' Create a smoothed line layer with confidence intervals
 #' @export
+#' @param mapping Aesthetic mappings
+#' @param method Smoothing method ("loess" or "lm")
+#' @param span Parameter controlling the amount of smoothing
+#' @return A GeomSmooth object
+#' @examples
+#' \dontrun{
+#' plot <- AGPlot$new(data)
+#' plot$add_layer(geom_smooth(list(x = "x", y = "y")))
+#' }
 geom_smooth <- function(mapping, method = "loess", span = 0.75) {
   GeomSmooth$new(mapping = mapping, method = method, span = span)
 }

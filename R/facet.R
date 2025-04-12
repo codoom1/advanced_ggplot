@@ -21,36 +21,79 @@ Facet <- R6::R6Class("Facet",
     #' @param data Data frame to split
     split_data = function(data) {
       # Get unique combinations of faceting variables
-      row_vals <- if (!is.null(self$rows)) unique(data[[self$rows]]) else NULL
-      col_vals <- if (!is.null(self$cols)) unique(data[[self$cols]]) else NULL
+      row_vals <- if (!is.null(self$rows)) {
+        if (length(self$rows) > 1) {
+          # For multiple variables, create a combination column
+          data$.facet_row <- apply(data[, self$rows, drop = FALSE], 1, paste, collapse = "_")
+          unique(data$.facet_row)
+        } else {
+          unique(data[[self$rows]])
+        }
+      } else NULL
+      
+      col_vals <- if (!is.null(self$cols)) {
+        if (length(self$cols) > 1) {
+          # For multiple variables, create a combination column
+          data$.facet_col <- apply(data[, self$cols, drop = FALSE], 1, paste, collapse = "_")
+          unique(data$.facet_col)
+        } else {
+          unique(data[[self$cols]])
+        }
+      } else NULL
       
       # Create list of data frames for each facet
       facets <- list()
       if (is.null(row_vals) && is.null(col_vals)) {
-        facets[[1]] <- list(data = data, row = 1, col = 1)
-      } else {
-        for (i in seq_along(row_vals %||% 1)) {
-          for (j in seq_along(col_vals %||% 1)) {
-            subset <- data
-            if (!is.null(row_vals)) {
-              subset <- subset[subset[[self$rows]] == row_vals[i],]
+        facets[["1"]] <- data
+        return(facets)
+      } 
+      
+      # Handle single variable faceting for rows
+      if (!is.null(row_vals) && is.null(col_vals)) {
+        for (val in row_vals) {
+          if (length(self$rows) > 1) {
+            subset <- data[data$.facet_row == val, ]
+          } else {
+            subset <- data[data[[self$rows]] == val, ]
+          }
+          facets[[as.character(val)]] <- subset
+        }
+        return(facets)
+      }
+      
+      # Handle single variable faceting for cols
+      if (is.null(row_vals) && !is.null(col_vals)) {
+        for (val in col_vals) {
+          if (length(self$cols) > 1) {
+            subset <- data[data$.facet_col == val, ]
+          } else {
+            subset <- data[data[[self$cols]] == val, ]
+          }
+          facets[[as.character(val)]] <- subset
+        }
+        return(facets)
+      }
+      
+      # Handle faceting by both row and column
+      if (!is.null(row_vals) && !is.null(col_vals)) {
+        for (r_val in row_vals) {
+          for (c_val in col_vals) {
+            if (length(self$rows) > 1 && length(self$cols) > 1) {
+              subset <- data[data$.facet_row == r_val & data$.facet_col == c_val, ]
+            } else if (length(self$rows) > 1) {
+              subset <- data[data$.facet_row == r_val & data[[self$cols]] == c_val, ]
+            } else if (length(self$cols) > 1) {
+              subset <- data[data[[self$rows]] == r_val & data$.facet_col == c_val, ]
+            } else {
+              subset <- data[data[[self$rows]] == r_val & data[[self$cols]] == c_val, ]
             }
-            if (!is.null(col_vals)) {
-              subset <- subset[subset[[self$cols]] == col_vals[j],]
-            }
-            
-            facets[[length(facets) + 1]] <- list(
-              data = subset,
-              row = i,
-              col = j,
-              row_val = row_vals[i],
-              col_val = col_vals[j]
-            )
+            key <- paste(r_val, c_val, sep = "_")
+            facets[[key]] <- subset
           }
         }
       }
       
-      facets
+      return(facets)
     },
     
     #' @description Calculate layout dimensions
@@ -104,12 +147,7 @@ FacetGrid <- R6::R6Class("FacetGrid",
       # Split data into facets
       facets <- self$split_data(data)
       dims <- self$get_dimensions(data)
-      
-      # Create scales for each facet
-      facet_scales <- self$generate_scales(
-        facets,
-        plot$scales
-      )
+      facet_names <- names(facets)
       
       # Create layout viewport
       grid::pushViewport(grid::viewport(
@@ -120,25 +158,24 @@ FacetGrid <- R6::R6Class("FacetGrid",
       ))
       
       # Render each facet
-      for (i in seq_along(facets)) {
-        facet <- facets[[i]]
+      i <- 1
+      for (facet_name in facet_names) {
+        facet_data <- facets[[facet_name]]
+        
+        # Position facets in a grid
+        row_pos <- (i - 1) %/% dims$cols + 1
+        col_pos <- (i - 1) %% dims$cols + 1
         
         # Create viewport for this facet
         grid::pushViewport(grid::viewport(
-          layout.pos.row = facet$row,
-          layout.pos.col = facet$col
+          layout.pos.row = row_pos,
+          layout.pos.col = col_pos
         ))
         
         # Create facet label
-        if (!is.null(facet$row_val) || !is.null(facet$col_val)) {
-          label <- paste(
-            if (!is.null(facet$row_val)) paste(self$rows, "=", facet$row_val),
-            if (!is.null(facet$col_val)) paste(self$cols, "=", facet$col_val),
-            sep = ", "
-          )
-          
+        if (facet_name != "1") {
           grid::grid.text(
-            label,
+            facet_name,
             x = 0.5,
             y = 0.95,
             just = "center",
@@ -148,13 +185,14 @@ FacetGrid <- R6::R6Class("FacetGrid",
         
         # Render plot layers with faceted data
         for (layer in plot$layers) {
-          layer$render(facet$data)
+          layer$render(facet_data)
         }
         
-        grid::upViewport()
+        grid::popViewport()
+        i <- i + 1
       }
       
-      grid::upViewport()
+      grid::popViewport()
     }
   )
 )

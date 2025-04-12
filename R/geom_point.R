@@ -30,9 +30,10 @@ GeomPoint <- R6::R6Class("GeomPoint",
 #' Create a point layer
 #' @export
 #' @param mapping Aesthetic mappings
-geom_point <- function(mapping = NULL) {
+geom_point <- function(mapping = NULL, size = NULL) {
+  if (!is.null(mapping) && !is.null(size) && is.null(mapping$size)) {
+    mapping$size <- size
+  }
+  
   GeomPoint$new(mapping = mapping)
 }
-
-# Helper function for NULL coalescing
-`%||%` <- function(a, b) if (is.null(a)) b else a

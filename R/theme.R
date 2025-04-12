@@ -65,11 +65,19 @@ Theme <- R6::R6Class("Theme",
 #' Create a new theme
 #' @export
 #' @param ... Named theme elements
+#' @return A Theme object
 theme <- function(...) {
   Theme$new(...)
 }
 
+#' Create a minimal theme with light background
 #' @export
+#' @return A Theme object with minimal styling
+#' @examples
+#' \dontrun{
+#' plot <- AGPlot$new(data)
+#' plot$set_theme(theme_minimal())
+#' }
 theme_minimal <- function() {
   theme(
     plot.background = list(fill = "white", color = NA),
@@ -82,7 +90,14 @@ theme_minimal <- function() {
   )
 }
 
+#' Create a dark theme with dark background
 #' @export
+#' @return A Theme object with dark styling
+#' @examples
+#' \dontrun{
+#' plot <- AGPlot$new(data)
+#' plot$set_theme(theme_dark())
+#' }
 theme_dark <- function() {
   theme(
     plot.background = list(fill = "grey20", color = NA),

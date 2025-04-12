@@ -9,6 +9,9 @@ theme(...)
 \arguments{
 \item{...}{Named theme elements}
 }
+\value{
+A Theme object
+}
 \description{
 Create a new theme
 }

@@ -16,8 +16,8 @@ test_that("Facet grid works with single variable", {
   # Test data splitting
   splits <- facet$split_data(test_data)
   expect_length(splits, 2)  # Should have 2 groups: A and B
-  expect_equal(nrow(splits$A), 2)
-  expect_equal(nrow(splits$B), 2)
+  expect_equal(nrow(splits[["A"]]), 2)
+  expect_equal(nrow(splits[["B"]]), 2)
 })
 
 test_that("Facet grid works with multiple variables", {

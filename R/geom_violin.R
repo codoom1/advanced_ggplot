@@ -61,6 +61,8 @@ GeomViolin <- R6::R6Class("GeomViolin",
   )
 )
 
+#' @title Violin Plot Statistics
+#' @description Statistical transformation for violin plot density calculations
 #' @export
 StatViolin <- R6::R6Class("StatViolin",
   inherit = Stat,
@@ -130,7 +132,4 @@ geom_violin <- function(mapping = NULL, width = 0.8, scale = "area") {
     mapping = mapping,
     stat = StatViolin$new()
   )
-}
-
-# Helper function for NULL coalescing
-`%||%` <- function(a, b) if (is.null(a)) b else a 
+} 

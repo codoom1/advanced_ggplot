@@ -19,6 +19,8 @@ Stat <- R6::R6Class("Stat",
   )
 )
 
+#' @title Density Statistical Transformation
+#' @description Computes density estimation for continuous variables
 #' @export
 StatDensity <- R6::R6Class("StatDensity",
   inherit = Stat,
@@ -38,6 +40,8 @@ StatDensity <- R6::R6Class("StatDensity",
   )
 )
 
+#' @title Binning Statistical Transformation
+#' @description Computes bins for histograms
 #' @export
 StatBin <- R6::R6Class("StatBin",
   inherit = Stat,
@@ -59,6 +63,8 @@ StatBin <- R6::R6Class("StatBin",
   )
 )
 
+#' @title Smoothing Statistical Transformation
+#' @description Computes smoothed lines and confidence intervals
 #' @export
 StatSmooth <- R6::R6Class("StatSmooth",
   inherit = Stat,
@@ -92,6 +98,3 @@ StatSmooth <- R6::R6Class("StatSmooth",
     }
   )
 )
-
-# Helper function for NULL coalescing
-`%||%` <- function(a, b) if (is.null(a)) b else a

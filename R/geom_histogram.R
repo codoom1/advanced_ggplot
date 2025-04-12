@@ -33,7 +33,16 @@ GeomHistogram <- R6::R6Class("GeomHistogram",
   )
 )
 
+#' Create a histogram layer
 #' @export
+#' @param mapping Aesthetic mappings
+#' @param bins Number of bins
+#' @return A GeomHistogram object
+#' @examples
+#' \dontrun{
+#' plot <- AGPlot$new(data)
+#' plot$add_layer(geom_histogram(list(x = "variable")))
+#' }
 geom_histogram <- function(mapping, bins = NULL) {
   GeomHistogram$new(mapping = mapping, bins = bins)
 }
