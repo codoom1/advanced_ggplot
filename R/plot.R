@@ -114,8 +114,8 @@ AGPlot <- R6::R6Class("AGPlot",
       
       # Set up the plotting region
       grid::pushViewport(grid::viewport(
-        width = unit(1, "npc"), 
-        height = unit(1, "npc"),
+        width = grid::unit(1, "npc"), 
+        height = grid::unit(1, "npc"),
         xscale = c(0, 1),
         yscale = c(0, 1)
       ))
@@ -131,8 +131,8 @@ AGPlot <- R6::R6Class("AGPlot",
         vp <- self$coord$setup_viewport(ranges$x, ranges$y)
       } else {
         vp <- grid::viewport(
-          width = unit(0.8, "npc"),
-          height = unit(0.8, "npc"),
+          width = grid::unit(0.8, "npc"),
+          height = grid::unit(0.8, "npc"),
           xscale = ranges$x,
           yscale = ranges$y
         )
