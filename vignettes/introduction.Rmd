@@ -1,10 +1,10 @@
 ---
-title: "Introduction to Advanced_ggplot"
+title: "Introduction to AdvancedGgplot"
 author: "Christopher Odoom"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to Advanced_ggplot}
+  %\VignetteIndexEntry{Introduction to AdvancedGgplot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,11 +21,11 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-Advanced_ggplot is a modern data visualization package for R, designed as an alternative to ggplot2 with a fully object-oriented approach using R6 classes. The package provides a flexible, composable API for creating complex visualizations.
+AdvancedGgplot is a modern data visualization package for R, designed as an alternative to ggplot2 with a fully object-oriented approach using R6 classes. The package provides a flexible, composable API for creating complex visualizations.
 
 ## Core Concepts
 
-Advanced_ggplot is built around a few key concepts:
+AdvancedGgplot is built around a few key concepts:
 
 1. **AGPlot**: The main container for visualizations
 2. **Layers**: Visual elements that represent data (points, lines, etc.)
@@ -37,11 +37,11 @@ Advanced_ggplot is built around a few key concepts:
 
 ## Installation
 
-You can install the development version of Advanced_ggplot from GitHub:
+You can install the development version of AdvancedGgplot from GitHub:
 
 ```{r eval=FALSE}
 # install.packages("devtools")
-devtools::install_github("christopherodoom/Advanced_ggplot")
+devtools::install_github("christopherodoom/AdvancedGgplot")
 ```
 
 ## Basic Usage
@@ -49,7 +49,7 @@ devtools::install_github("christopherodoom/Advanced_ggplot")
 Let's start by creating a simple scatter plot:
 
 ```{r setup, message=FALSE}
-library(Advanced_ggplot)
+library(AdvancedGgplot)
 
 # Create sample data
 set.seed(123)
@@ -68,7 +68,7 @@ plot$plot()
 
 ## Combining Multiple Layers
 
-One of the strengths of Advanced_ggplot is the ability to combine multiple layers for complex visualizations:
+One of the strengths of AdvancedGgplot is the ability to combine multiple layers for complex visualizations:
 
 ```{r}
 # Combine points and lines
@@ -80,7 +80,7 @@ plot$plot()
 
 ## Statistical Transformations
 
-Advanced_ggplot includes statistical transformations like smoothing:
+AdvancedGgplot includes statistical transformations like smoothing:
 
 ```{r}
 # Add a smoothed line with confidence interval
@@ -185,7 +185,7 @@ plot$plot()
 
 ## Additional Geometry Types
 
-Advanced_ggplot includes a variety of geometry types:
+AdvancedGgplot includes a variety of geometry types:
 
 ### Histograms
 
@@ -259,4 +259,4 @@ plot$plot()
 
 ## Conclusion
 
-Advanced_ggplot provides a flexible, object-oriented approach to data visualization in R. Its composable API makes it easy to create complex visualizations while maintaining readability and maintainability. 
+AdvancedGgplot provides a flexible, object-oriented approach to data visualization in R. Its composable API makes it easy to create complex visualizations while maintaining readability and maintainability. 

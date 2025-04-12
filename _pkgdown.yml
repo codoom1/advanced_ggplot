@@ -30,6 +30,8 @@ reference:
   - title: Themes and Aesthetics
     desc: Control the appearance of plots
     contents:
+      - Theme
+      - theme
       - starts_with("theme_")
       - starts_with("scale_")
       - starts_with("coord_")
@@ -47,15 +49,63 @@ reference:
     contents:
       - starts_with("interactive_")
       - starts_with("animation_")
+      
+  - title: Low-level Classes
+    desc: Internal implementation classes
+    contents: 
+      - Animation
+      - Annotation
+      - AnnotationArrow
+      - AnnotationReferenceLine
+      - AnnotationText
+      - ColorPalette
+      - ColorScale
+      - Coord
+      - CoordCartesian
+      - CoordLog
+      - CoordPolar
+      - Facet
+      - FacetGrid
+      - FacetWrap
+      - InteractiveLayer
+      - InteractivePlot
+      - InteractivePoint
+      - Layer
+      - Layout
+      - Legend
+      - Position
+      - PositionDodge
+      - PositionJitter 
+      - PositionStack
+      - Scale
+      - Stat
+      - StatBin
+      - StatBoxplot
+      - StatDensity
+      - StatSmooth
+      - StatViolin
+      - TimeSeriesAnimation
+      - TransitionAnimation
+      
+  - title: Utility Functions
+    desc: Helper functions for color palettes and layout
+    contents:
+      - animate_time_series
+      - animate_transition
+      - annotate_arrow
+      - annotate_reference_line
+      - annotate_text
+      - arrange_plots
+      - create_legend
+      - palette_colorblind
+      - palette_custom
+      - palette_default
+      - palette_diverging
+      - palette_sequential
+      - plot_grid
 
 articles:
   - title: Getting Started
     desc: Learn the basics of AdvancedGgplot
     contents:
       - introduction
-  
-  - title: Examples
-    desc: Example visualizations
-    contents:
-      - basic-examples
-      - statistical-visualizations 
