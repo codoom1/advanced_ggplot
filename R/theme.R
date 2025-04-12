@@ -1,8 +1,10 @@
-#' @title Theme Class
+#' Theme Class
+#' 
 #' @name Theme
-#' @description Controls the visual appearance of plot elements
+#' @docType class
 #' @export
-#' @format An R6 class object.
+#' @format An \code{R6Class} object.
+#' @description Controls the visual appearance of plot elements
 #' @details The Theme class controls various visual aspects of a plot, including 
 #' backgrounds, grid lines, and text elements. It is used to define the visual 
 #' style of plots created with AdvancedGgplot.
@@ -21,6 +23,12 @@
 #'   \item{axis.ticks}{Controls axis ticks appearance}
 #' }
 #' 
+#' @section Methods:
+#' \describe{
+#'   \item{\code{initialize(...)}}{Create a new Theme with the specified elements}
+#'   \item{\code{apply()}}{Apply theme elements to the current viewport}
+#' }
+#' 
 #' @examples
 #' \dontrun{
 #' # Create a custom theme
@@ -33,6 +41,7 @@
 #' plot <- AGPlot$new(data)
 #' plot$set_theme(custom_theme)
 #' }
+#' @rdname Theme
 Theme <- R6::R6Class("Theme",
   public = list(
     # Plot region
@@ -95,9 +104,20 @@ Theme <- R6::R6Class("Theme",
 )
 
 #' Create a new theme
+#' 
+#' @name theme
 #' @export
 #' @param ... Named theme elements
 #' @return A Theme object
+#' @description Function to create a new Theme object
+#' @examples
+#' \dontrun{
+#' my_theme <- theme(
+#'   plot.background = list(fill = "lightyellow"),
+#'   axis.line = list(color = "darkgrey")
+#' )
+#' }
+#' @rdname theme
 theme <- function(...) {
   Theme$new(...)
 }
