@@ -30,7 +30,6 @@ reference:
   - title: Themes and Aesthetics
     desc: Control the appearance of plots
     contents:
-      - Theme
       - theme
       - starts_with("theme_")
       - starts_with("scale_")
