@@ -48,7 +48,7 @@ devtools::install_github("christopherodoom/AdvancedGgplot")
 
 Let's start by creating a simple scatter plot:
 
-```{r setup, message=FALSE}
+```{r setup, message=FALSE, eval=FALSE}
 library(AdvancedGgplot)
 
 # Create sample data
@@ -70,7 +70,7 @@ plot$plot()
 
 One of the strengths of AdvancedGgplot is the ability to combine multiple layers for complex visualizations:
 
-```{r}
+```{r eval=FALSE}
 # Combine points and lines
 plot <- AGPlot$new(data)
 plot$add_layer(geom_line(mapping = list(x = "x", y = "y", color = "blue")))
@@ -82,7 +82,7 @@ plot$plot()
 
 AdvancedGgplot includes statistical transformations like smoothing:
 
-```{r}
+```{r eval=FALSE}
 # Add a smoothed line with confidence interval
 plot <- AGPlot$new(data)
 plot$add_layer(geom_point(mapping = list(x = "x", y = "y", color = "black")))
@@ -96,7 +96,7 @@ plot$plot()
 
 Boxplots provide a concise summary of a distribution:
 
-```{r}
+```{r eval=FALSE}
 # Create data for statistical plots
 stat_data <- data.frame(
   category = rep(c("Group A", "Group B", "Group C"), each = 30),
@@ -122,7 +122,7 @@ boxplot$plot()
 
 Violin plots show the distribution shape and are useful for comparing distributions between groups:
 
-```{r}
+```{r eval=FALSE}
 # Create a violin plot with the same data
 violin_plot <- AGPlot$new(stat_data)
 violin_plot$add_layer(geom_violin(mapping = list(
@@ -139,7 +139,7 @@ violin_plot$plot()
 
 You can combine boxplots and violin plots for a more comprehensive view:
 
-```{r}
+```{r eval=FALSE}
 # Create a plot with both boxplots and violin plots
 combined_stat <- AGPlot$new(stat_data)
 combined_stat$add_layer(geom_violin(mapping = list(
@@ -163,7 +163,7 @@ combined_stat$plot()
 
 Create multi-panel plots with faceting:
 
-```{r}
+```{r eval=FALSE}
 # Prepare data in long format for faceting
 long_data <- reshape2::melt(
   data[, c("x", "y", "z")], 
@@ -189,7 +189,7 @@ AdvancedGgplot includes a variety of geometry types:
 
 ### Histograms
 
-```{r}
+```{r eval=FALSE}
 # Create a histogram
 plot <- AGPlot$new(data)
 plot$add_layer(geom_histogram(mapping = list(
@@ -202,7 +202,7 @@ plot$plot()
 
 ### Density Plots
 
-```{r}
+```{r eval=FALSE}
 # Create a density plot
 plot <- AGPlot$new(data)
 plot$add_layer(geom_density(mapping = list(
@@ -216,7 +216,7 @@ plot$plot()
 
 ### Bar Charts
 
-```{r}
+```{r eval=FALSE}
 # Create data for bar chart
 counts <- data.frame(
   category = c("A", "B", "C", "D"),
